@@ -1,21 +1,29 @@
+import axios from 'axios';
 import './App.css';
 import { useState } from 'react';
-function App() {
 
+function App() {
   const [question, setQuestion] = useState('');
-  const handleSubmit=()=>{
-    console.log(question);
+  const [response, setResponse] = useState('');
+  
+  const handleSubmit = () => {
+    axios.post("http://localhost:3024/search/question", { question: question })
+      .then((response) => {
+        if (response.data.status === "success") {
+          setResponse(response.data.response);
+        }
+      });
   }
+
   return (
     <div className="App">
       <nav className="navbar">
-      <div className="navbar-middle">
+        <div className="navbar-middle">
           <span className="logo">Style-AI</span>
         </div>
         <div className="navbar-top">
           <div className="login-sign">Login/Sign</div>
         </div>
-        
       </nav>
       <div className="content">
         <div className="question-box">
@@ -27,6 +35,12 @@ function App() {
           />
           <button className="ask-button" onClick={handleSubmit}>Ask</button>
         </div>
+        
+        {response && (
+          <div className="answer-box">
+            <p className="response-text">{response}</p>
+          </div>
+        )}
       </div>
     </div>
   );

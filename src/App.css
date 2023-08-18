@@ -22,15 +22,12 @@
   font-size: 24px;
   font-weight: bold;
 }
-/* App.css */
-
-/* ... Previous CSS rules ... */
 
 .content {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: calc(100vh - 100px); /* Adjust as needed */
+  padding: 20px;
 }
 
 .question-box {
@@ -39,6 +36,7 @@
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 4px;
+  margin-bottom: 20px; /* Add margin to separate question box from response box */
 }
 
 .question-input {
@@ -56,4 +54,11 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.response-box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
 }
